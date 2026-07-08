@@ -1,4 +1,6 @@
-package PACKAGE_NAME;
-
 public class Car {
+
+    Car pride = new Car();
+
+
 }
