@@ -2,33 +2,21 @@ package vehicle;
 
 import static java.lang.System.*;
 
-public class Bike {
+public class Bike extends vehicle {
 
-    public Boolean bikeIsOn;
-    public String Model;
-    public Boolean bikeIsParked = true;
 
-    public Bike(String Model) {
-        this.Model = Model;
+    public Bike(String model) {
+        this.model = model;
     }
 
-    public void toTurnOn() {
-        out.println(Model + " is on");
-        bikeIsOn = true;
-    }
 
-    public void toTurnOff() {
-        out.println(Model + " is off");
-        bikeIsOn = false;
-    }
-
-    public void toRide() {
-        if (bikeIsOn) {
-            out.println(Model + " is on the road!");
-            bikeIsParked = false;
+    public void toMove() {
+        if (isItOn) {
+            out.println(model + " is on the road!");
+            isItParked = false;
 
         } else {
-            out.println("Please turn on the " + Model);
+            out.println("Please turn on the " + model);
         }
     }
 }

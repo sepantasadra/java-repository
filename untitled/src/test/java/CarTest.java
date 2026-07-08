@@ -13,9 +13,9 @@ public class CarTest {
 
         Benz.toTurnOn();
         Benz.toCloseDoor();
-        Benz.toDrive();
+        Benz.toMove();
 
-        Assertions.assertFalse(Benz.carIsParked);
+        Assertions.assertFalse(Benz.isItParked);
 
         out.println("-----------------------------------------");
     }
@@ -25,9 +25,9 @@ public class CarTest {
 
         Benz.toTurnOff();
         Benz.toOpenDoor();
-        Benz.toDrive();
+        Benz.toMove();
 
-        Assertions.assertTrue(Benz.carIsParked);
+        Assertions.assertTrue(Benz.isItParked);
 
         out.println("-----------------------------------------");
     }
@@ -37,9 +37,9 @@ public class CarTest {
 
         Benz.toTurnOn();
         Benz.toOpenDoor();
-        Benz.toDrive();
+        Benz.toMove();
 
-        Assertions.assertTrue(Benz.carIsParked);
+        Assertions.assertTrue(Benz.isItParked);
 
         out.println("-----------------------------------------");
     }
@@ -49,9 +49,9 @@ public class CarTest {
 
         Benz.toTurnOff();
         Benz.toCloseDoor();
-        Benz.toDrive();
+        Benz.toMove();
 
-        Assertions.assertTrue(Benz.carIsParked);
+        Assertions.assertTrue(Benz.isItParked);
 
     }
 }

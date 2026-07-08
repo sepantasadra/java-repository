@@ -9,15 +9,15 @@ public class BikeTest {
     @Test
     void whenBikeIsOn() {
         cg.toTurnOn();
-        cg.toRide();
-        Assertions.assertFalse(cg.bikeIsParked);
+        cg.toMove();
+        Assertions.assertFalse(cg.isItParked);
         System.out.println("------------------------------------");
     }
 
     @Test
     void  whenBikeIsOff() {
         cg.toTurnOff();
-        cg.toRide();
-        Assertions.assertTrue(cg.bikeIsParked);
+        cg.toMove();
+        Assertions.assertTrue(cg.isItParked);
     }
 }
