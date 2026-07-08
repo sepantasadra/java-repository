@@ -1,6 +1,48 @@
-import static java.lang.System.*;
+import org.junit.jupiter.api.Test;
+
+import static java.lang.System.out;
 
 public class CarTest {
+
+    Car Benz = new Car();
+
+    @Test
+    void When_Door_Is_Close_and_Car_Is_On() {
+
+        Benz.toTurnOn();
+        Benz.toCloseDoor();
+        Benz.toDrive();
+
+        out.println("-----------------------------------------");
+    }
+
+    @Test
+    void When_Door_Is_Open_and_Car_Is_Off() {
+
+        Benz.toTurnOff();
+        Benz.toOpenDoor();
+        Benz.toDrive();
+
+        out.println("-----------------------------------------");
+    }
+
+    @Test
+    void When_Door_Is_Open_and_Car_Is_On() {
+
+        Benz.toTurnOn();
+        Benz.toOpenDoor();
+        Benz.toDrive();
+
+        out.println("-----------------------------------------");
+    }
+
+    @Test
+    void When_Door_Is_Close_and_Car_Is_Off() {
+
+        Benz.toTurnOff();
+        Benz.toCloseDoor();
+        Benz.toDrive();
+    }
 
     class Car {
 
@@ -8,12 +50,12 @@ public class CarTest {
         boolean doorIsClose;
         String Model;
 
-        void On() {
+        void toTurnOn() {
             out.println("Car is on");
             carIsOn = true;
         }
 
-        void Off() {
+        void toTurnOff() {
             out.println("Car is off");
             carIsOn = false;
         }
@@ -29,7 +71,7 @@ public class CarTest {
         }
 
         void toDrive() {
-            if (doorIsClose && carIsOn){
+            if (doorIsClose && carIsOn) {
                 out.println("We are on the road!");
             } else if (!doorIsClose && !carIsOn) {
                 out.println("Please close the door and turn on the car");
@@ -39,7 +81,5 @@ public class CarTest {
                 out.println("Please turn on the car");
             }
         }
-
-
     }
 }
