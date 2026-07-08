@@ -1,10 +1,12 @@
+import vehicle.Car;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static java.lang.System.out;
 
 public class CarTest {
 
-    Car Benz = new Car();
+    Car Benz = new Car("Benz");
 
     @Test
     void When_Door_Is_Close_and_Car_Is_On() {
@@ -12,6 +14,8 @@ public class CarTest {
         Benz.toTurnOn();
         Benz.toCloseDoor();
         Benz.toDrive();
+
+        Assertions.assertFalse(Benz.carIsParked);
 
         out.println("-----------------------------------------");
     }
@@ -23,6 +27,8 @@ public class CarTest {
         Benz.toOpenDoor();
         Benz.toDrive();
 
+        Assertions.assertTrue(Benz.carIsParked);
+
         out.println("-----------------------------------------");
     }
 
@@ -33,6 +39,8 @@ public class CarTest {
         Benz.toOpenDoor();
         Benz.toDrive();
 
+        Assertions.assertTrue(Benz.carIsParked);
+
         out.println("-----------------------------------------");
     }
 
@@ -42,44 +50,8 @@ public class CarTest {
         Benz.toTurnOff();
         Benz.toCloseDoor();
         Benz.toDrive();
-    }
 
-    class Car {
+        Assertions.assertTrue(Benz.carIsParked);
 
-        boolean carIsOn;
-        boolean doorIsClose;
-        String Model;
-
-        void toTurnOn() {
-            out.println("Car is on");
-            carIsOn = true;
-        }
-
-        void toTurnOff() {
-            out.println("Car is off");
-            carIsOn = false;
-        }
-
-        void toOpenDoor() {
-            out.println("Door is open");
-            doorIsClose = false;
-        }
-
-        void toCloseDoor() {
-            out.println("Door is close");
-            doorIsClose = true;
-        }
-
-        void toDrive() {
-            if (doorIsClose && carIsOn) {
-                out.println("We are on the road!");
-            } else if (!doorIsClose && !carIsOn) {
-                out.println("Please close the door and turn on the car");
-            } else if (!doorIsClose) {
-                out.println("Please close the door");
-            } else {
-                out.println("Please turn on the car");
-            }
-        }
     }
 }
