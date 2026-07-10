@@ -1,8 +1,11 @@
 package vehicle;
 
+import Options.Engine;
+import Options.GearBox;
+
 import static java.lang.System.out;
 
-public class Car extends vehicle {
+public class Car extends vehicle implements GearBox, Engine {
 
 
     public boolean doorIsClosed;
@@ -34,5 +37,15 @@ public class Car extends vehicle {
         } else {
             out.println("Please turn on the " + model);
         }
+    }
+
+    @Override
+    public String gearBoxType() {
+        return "5g";
+    }
+
+    @Override
+    public String engineType() {
+        return "v6";
     }
 }

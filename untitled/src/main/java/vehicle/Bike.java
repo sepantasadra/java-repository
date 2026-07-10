@@ -1,8 +1,11 @@
 package vehicle;
 
+import Options.Engine;
+import Options.GearBox;
+
 import static java.lang.System.*;
 
-public class Bike extends vehicle {
+public class Bike extends vehicle implements GearBox, Engine {
 
 
     public Bike(String model) {
@@ -18,5 +21,15 @@ public class Bike extends vehicle {
         } else {
             out.println("Please turn on the " + model);
         }
+    }
+
+    @Override
+    public String engineType() {
+        return "i3";
+    }
+
+    @Override
+    public String gearBoxType() {
+        return "auto";
     }
 }
