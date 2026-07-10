@@ -2,7 +2,7 @@ package vehicle;
 
 import static java.lang.System.out;
 
-public class vehicle {
+public abstract class vehicle {
     public Boolean isItOn;
     public String model;
     public Boolean isItParked = true;
@@ -16,4 +16,6 @@ public class vehicle {
         out.println(model + " is off");
         isItOn = false;
     }
+
+    public abstract void toMove();
 }

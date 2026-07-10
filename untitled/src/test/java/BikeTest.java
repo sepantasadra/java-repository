@@ -1,10 +1,11 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import vehicle.Bike;
+import vehicle.vehicle;
 
 public class BikeTest {
 
-    Bike cg = new Bike("cg");
+    vehicle cg = new Bike("cg");
 
     @Test
     void whenBikeIsOn() {
