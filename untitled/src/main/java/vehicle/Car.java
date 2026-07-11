@@ -5,13 +5,16 @@ import Options.GearBox;
 
 import static java.lang.System.out;
 
-public class Car extends vehicle implements GearBox, Engine {
+public class Car extends Vehicle implements GearBox, Engine {
 
 
     public boolean doorIsClosed;
 
-    public Car(String model) {
+
+    public Car(String model, String Engine, String GearBox) {
         this.model = model;
+        this.Engine = Engine;
+        this.GearBox = GearBox;
     }
 
 
@@ -37,6 +40,11 @@ public class Car extends vehicle implements GearBox, Engine {
         } else {
             out.println("Please turn on the " + model);
         }
+    }
+
+    @Override
+    public String getModel() {
+        return model;
     }
 
     @Override

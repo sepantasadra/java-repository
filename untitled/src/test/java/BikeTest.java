@@ -1,11 +1,11 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import vehicle.Bike;
-import vehicle.vehicle;
+import vehicle.Vehicle;
 
 public class BikeTest {
 
-    vehicle cg = new Bike("cg");
+    Vehicle cg = new Bike("cg", "", "");
 
     @Test
     void whenBikeIsOn() {
@@ -16,7 +16,7 @@ public class BikeTest {
     }
 
     @Test
-    void  whenBikeIsOff() {
+    void whenBikeIsOff() {
         cg.toTurnOff();
         cg.toMove();
         Assertions.assertTrue(cg.isItParked);
