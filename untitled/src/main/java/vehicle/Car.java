@@ -8,6 +8,7 @@ import static java.lang.System.out;
 public class Car extends Vehicle implements GearBox, Engine {
 
 
+    public static int soldCars;
     public boolean doorIsClosed;
 
 
