@@ -3,7 +3,7 @@ package vehicle;
 import static java.lang.System.out;
 
 public abstract class Vehicle {
-    public Boolean isItOn;
+    public Boolean isItOn = false;
     public String model;
     public Boolean isItParked = true;
     public String Engine;
