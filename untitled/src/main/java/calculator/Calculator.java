@@ -2,23 +2,30 @@ package calculator;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static calculator.CalculatorS.calc;
 
 public class Calculator {
 
 
-
     private static JTextField result;
-
+    private static JTextField onlineResult;
     private static ArrayList<String> nums = new ArrayList<>();
     private static String string;
+    private static ArrayList<String> possible = new ArrayList<>();
 
     public static void main(String[] args) {
 
+
+        possible.add("+");
+        possible.add("-");
 
         JFrame calculator = new JFrame("calculator.Calculator");
 
 
         result = new JTextField();
+        onlineResult = new JTextField();
 
         result.setBounds(0, 0, 150, 50);
         result.setEditable(false);
@@ -27,11 +34,14 @@ public class Calculator {
         delete.setBounds(150, 0, 50, 50);
         delete.addActionListener(e -> {
 
-         result.setText("");
-         string = "";
-         nums.clear();
+            result.setText("");
+            string = null;
+            nums.clear();
+            possible.clear();
+            possible.add("+");
+            possible.add("-");
 
-         });
+        });
 
         JButton one = getButton("1", 0, 50);
 
@@ -43,11 +53,21 @@ public class Calculator {
         plus.setBounds(150, 50, 50, 50);
         plus.addActionListener(e -> {
 
-            nums.add(string);
-            string = "";
-            result.setText( result.getText() + plus.getText());
-            nums.add("+");
+            if (string == null) {
 
+                string = "+";
+                result.setText(result.getText() + plus.getText());
+                possible.clear();
+            } else {
+
+                if (possible.contains("+")) {
+                    nums.add(string);
+                    string = "";
+                    result.setText(result.getText() + plus.getText());
+                    nums.add("+");
+                    possible.clear();
+                }
+            }
         });
 
 
@@ -61,10 +81,20 @@ public class Calculator {
         minus.setBounds(150, 100, 50, 50);
         minus.addActionListener(e -> {
 
-            nums.add(string);
-            string = "";
-            result.setText( result.getText() + minus.getText());
-            nums.add("-");
+            if (string == null) {
+
+                string = "-";
+                result.setText(result.getText() + minus.getText());
+                possible.clear();
+            } else {
+                if (possible.contains("-")) {
+                    nums.add(string);
+                    string = "";
+                    result.setText(result.getText() + minus.getText());
+                    nums.add("-");
+                    possible.clear();
+                }
+            }
 
         });
 
@@ -78,27 +108,50 @@ public class Calculator {
         multiply.setBounds(150, 150, 50, 50);
         multiply.addActionListener(e -> {
 
-            nums.add(string);
-            string = "";
-            result.setText( result.getText() + multiply.getText());
-            nums.add("*");
+            if (possible.contains("*")) {
+                nums.add(string);
+                string = "";
+                result.setText(result.getText() + multiply.getText());
+                nums.add("*");
+                possible.clear();
+                possible.add("+");
+                possible.add("-");
+            }
 
         });
 
-        JButton point = getButton(".", 0, 200);
+//        JButton point = getButton(".", 0, 200);
+        JButton point = new JButton(".");
+        point.setBounds(0, 200, 50, 50);
+        point.addActionListener(event -> {
+
+            if (possible.contains(".")) {
+                result.setText(result.getText() + point.getText());
+                if (string != null) {
+                    string += point.getText();
+                } else {
+                    string = point.getText();
+                }
+                possible.clear();
+            }
+        });
 
         JButton zero = getButton("0", 50, 200);
 
         JButton equal = new JButton("=");
         equal.setBounds(100, 200, 50, 50);
-        equal.addActionListener(e ->{
+        equal.addActionListener(e -> {
 
             nums.add(string);
             string = "";
-            String answer = Double.toString(CalculatorS.calc(nums));
+            String answer = Double.toString(calc(nums));
             string = answer;
             result.setText(answer);
             nums.clear();
+            possible.clear();
+            possible.add("+");
+            possible.add("-");
+//                itsPossibleToType = false;
 
         });
 
@@ -107,13 +160,19 @@ public class Calculator {
         division.setBounds(150, 200, 50, 50);
         division.addActionListener(e -> {
 
-            nums.add(string);
-            string = "";
-            result.setText( result.getText() + division.getText());
-            nums.add("/");
-
+            if (possible.contains("/")) {
+                nums.add(string);
+                string = "";
+                result.setText(result.getText() + division.getText());
+                nums.add("/");
+                possible.clear();
+                possible.add("+");
+                possible.add("-");
+            }
         });
 
+        onlineResult.setBounds(200 , 0 , 50, 50);
+        onlineResult.setEditable(false);
 
         calculator.add(result);
         calculator.add(delete);
@@ -133,6 +192,7 @@ public class Calculator {
         calculator.add(multiply);
         calculator.add(division);
         calculator.add(equal);
+        calculator.add(onlineResult);
 
 
         calculator.setLayout(null);
@@ -146,10 +206,25 @@ public class Calculator {
         button.setBounds(xPosition, yPosition, 50, 50);
         button.addActionListener(event -> {
             result.setText(result.getText() + button.getText());
+
             if (string != null) {
                 string += button.getText();
+                nums.add(string);
+                onlineResult.setText(Double.toString(calc(nums)));
+                nums.remove(nums.size()-1);
             } else {
                 string = button.getText();
+                nums.add(string);
+                onlineResult.setText(Double.toString(calc(nums)));
+                nums.remove(nums.size()-1);
+            }
+
+            possible.add("+");
+            possible.add("-");
+            possible.add("/");
+            possible.add("*");
+            if (!string.contains(".")) {
+                possible.add(".");
             }
         });
 
