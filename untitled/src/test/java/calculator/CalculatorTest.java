@@ -3,19 +3,60 @@ package calculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static calculator.CalculatorS.add;
+import java.util.ArrayList;
+
+import static calculator.CalculatorS.calc;
 
 public class CalculatorTest {
+//    @Test
+//    void Should_Add_Two_Nums() {
+//
+//        CalculatorS calculatorS = new CalculatorS();
+//
+//        double addResult = calculatorS.add("-1.3", "2.1");
+//
+//        System.out.println(addResult);
+//
+//        Assertions.assertEquals(addResult, 0.8);
+//
+//    }
+
     @Test
-    void Should_Add_Two_Nums() {
+    void Should_Answer_String_Of_Nums_And_Methods() {
 
-        CalculatorS calculatorS = new CalculatorS();
+        ArrayList <String> xxx = new ArrayList<>();
 
-        double addResult = calculatorS.add("-1.3", "2.1");
+        xxx.add("2");
+        xxx.add("-");
+        xxx.add("3");
+        xxx.add("*");
+        xxx.add("4");
+        xxx.add("/");
+        xxx.add("8");
+        xxx.add("+");
+        xxx.add("6");
+        xxx.add("-");
+        xxx.add("4");
+        xxx.add("*");
+        xxx.add("12");
+        xxx.add("/");
+        xxx.add("6");
+        xxx.add("+");
+        xxx.add("7");
 
-        System.out.println(addResult);
+        Assertions.assertEquals(5.5, calc(xxx));
 
-        Assertions.assertEquals(addResult, 0.8);
 
+        ArrayList <String> qqq = new ArrayList<>();
+
+        qqq.add("2");
+        qqq.add("*");
+        qqq.add("3");
+        qqq.add("/");
+        qqq.add("4");
+        qqq.add("*");
+        qqq.add("6");
+
+        Assertions.assertEquals(9, calc(qqq));
     }
 }

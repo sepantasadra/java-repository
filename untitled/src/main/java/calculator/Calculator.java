@@ -1,18 +1,20 @@
 package calculator;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Calculator {
 
 
 
     private static JTextField result;
-    private static String firstNum;
 
+    private static ArrayList<String> nums = new ArrayList<>();
+    private static String string;
 
     public static void main(String[] args) {
 
-        CalculatorS calculatorS = new CalculatorS();
+
         JFrame calculator = new JFrame("calculator.Calculator");
 
 
@@ -21,9 +23,15 @@ public class Calculator {
         result.setBounds(0, 0, 150, 50);
         result.setEditable(false);
 
-        JButton delete = new JButton("<-");
+        JButton delete = new JButton("C");
         delete.setBounds(150, 0, 50, 50);
-        delete.addActionListener(e -> result.setText(""));
+        delete.addActionListener(e -> {
+
+         result.setText("");
+         string = "";
+         nums.clear();
+
+         });
 
         JButton one = getButton("1", 0, 50);
 
@@ -35,8 +43,10 @@ public class Calculator {
         plus.setBounds(150, 50, 50, 50);
         plus.addActionListener(e -> {
 
-            firstNum = result.getText();
-            result.setText("");
+            nums.add(string);
+            string = "";
+            result.setText( result.getText() + plus.getText());
+            nums.add("+");
 
         });
 
@@ -49,7 +59,14 @@ public class Calculator {
 
         JButton minus = new JButton("-");
         minus.setBounds(150, 100, 50, 50);
+        minus.addActionListener(e -> {
 
+            nums.add(string);
+            string = "";
+            result.setText( result.getText() + minus.getText());
+            nums.add("-");
+
+        });
 
         JButton seven = getButton("7", 0, 150);
 
@@ -59,7 +76,14 @@ public class Calculator {
 
         JButton multiply = new JButton("*");
         multiply.setBounds(150, 150, 50, 50);
+        multiply.addActionListener(e -> {
 
+            nums.add(string);
+            string = "";
+            result.setText( result.getText() + multiply.getText());
+            nums.add("*");
+
+        });
 
         JButton point = getButton(".", 0, 200);
 
@@ -69,17 +93,26 @@ public class Calculator {
         equal.setBounds(100, 200, 50, 50);
         equal.addActionListener(e ->{
 
-            int secondNum = Integer.parseInt(result.getText());
-
-            double addResult = calculatorS.add(result.getText(), firstNum);
-
-            result.setText(Double.toString(addResult));
+            nums.add(string);
+            string = "";
+            String answer = Double.toString(CalculatorS.calc(nums));
+            string = answer;
+            result.setText(answer);
+            nums.clear();
 
         });
 
 
         JButton division = new JButton("/");
         division.setBounds(150, 200, 50, 50);
+        division.addActionListener(e -> {
+
+            nums.add(string);
+            string = "";
+            result.setText( result.getText() + division.getText());
+            nums.add("/");
+
+        });
 
 
         calculator.add(result);
@@ -111,7 +144,15 @@ public class Calculator {
     private static JButton getButton(String label, int xPosition, int yPosition) {
         JButton button = new JButton(label);
         button.setBounds(xPosition, yPosition, 50, 50);
-        button.addActionListener(event -> result.setText(result.getText() + button.getText()));
+        button.addActionListener(event -> {
+            result.setText(result.getText() + button.getText());
+            if (string != null) {
+                string += button.getText();
+            } else {
+                string = button.getText();
+            }
+        });
+
         return button;
     }
 }
