@@ -142,16 +142,19 @@ public class Calculator {
         equal.setBounds(100, 200, 50, 50);
         equal.addActionListener(e -> {
 
-            nums.add(string);
-            string = "";
-            String answer = Double.toString(calc(nums));
-            string = answer;
-            result.setText(answer);
-            nums.clear();
-            possible.clear();
-            possible.add("+");
-            possible.add("-");
+            if(possible.contains("/")) {
+
+                nums.add(string);
+                string = "";
+                String answer = Double.toString(calc(nums));
+                string = answer;
+                result.setText(answer);
+                nums.clear();
+                possible.clear();
+                possible.add("+");
+                possible.add("-");
 //                itsPossibleToType = false;
+            }
 
         });
 
